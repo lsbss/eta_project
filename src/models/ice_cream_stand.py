@@ -15,29 +15,41 @@ class IceCreamStand(Restaurant):
     def flavors_available(self):
         """Percorra a lista de sabores disponíveis e imprima."""
         if self.flavors:
-            print("\nNo momento temos os seguintes sabores de sorvete disponíveis:")
+            # Iniciando variavel msg
+            msg = "\nNo momento temos os seguintes sabores de sorvete disponíveis:"
             for flavor in self.flavors:
-                print(f"\t-{flavor}")
+                # Concatenando sabores ao msg
+                msg = f"{msg}\n\t- {flavor}"
+            # Troca print -> return
+            return msg
         else:
-            print("Estamos sem estoque atualmente!")
+            # Troca print -> return
+            return "Estamos sem estoque atualmente!"
 
     def find_flavor(self, flavor):
         """Verifica se o sabor informado está disponível."""
         if self.flavors:
             if flavor in self.flavors:
-                print(f"Temos no momento {self.flavors}!")
+                #Troca print -> return / self.flavors -> flavor
+                return f"Temos {flavor} no momento!"
             else:
-                print(f"Não temos no momento {self.flavors}!")
+                # Troca print -> return / self.flavors -> flavor
+                return f"Não temos {flavor} no momento!"
         else:
-            print("Estamos sem estoque atualmente!")
+            # Troca print -> return
+            return "Estamos sem estoque atualmente!"
 
     def add_flavor(self, flavor):
         """Add o sabor informado ao estoque."""
-        if self.flavors:
-            if flavor in self.flavors:
-                print("\nSabor já disponivel!")
-            else:
-                self.flavors.append(flavor)
-                print(f"{flavor} adicionado ao estoque!")
+        #Adicionando validacao de obrigatoriedade de flavor
+        if not flavor:
+            return "\nValor inválido!"
+        # Removido if self.flavors:
+        if flavor in self.flavors:
+                # Troca print -> return
+            return "\nSabor já disponivel!"
         else:
-            print("Estamos sem estoque atualmente!")
+            self.flavors.append(flavor)
+               # Troca print -> return
+            return f"{flavor} adicionado ao estoque!"
+        #Removido o else:
